@@ -81,6 +81,9 @@ namespace ConsoleTODO.Controllers
 
             currentTasks.SaveDataToFile(fileName);
 
+            Console.Clear();
+            Console.WriteLine("Task has been successfully created!");
+
             return currentTasks;
         }
 
@@ -96,6 +99,13 @@ namespace ConsoleTODO.Controllers
                 Console.Write("Enter the ID of the task you want to edit: ");
                 idToEdit = Convert.ToInt32(Console.ReadLine());
 
+                if (currentTasks.Where(x => x.Id == idToEdit).Count() == 0) 
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid ID. Returning to main menu...");
+                    return currentTasks;
+                }
+
                 TaskModel selectedTask = currentTasks.Where(x => x.Id == idToEdit).First();
 
                 Console.Write("Enter the new name for this task (or leave empty): ");
@@ -109,6 +119,9 @@ namespace ConsoleTODO.Controllers
                 if (!string.IsNullOrEmpty(newDate)) selectedTask.TaskDueDate = newDate;
 
                 currentTasks.SaveDataToFile(fileName);
+
+                Console.Clear();
+                Console.WriteLine("Task has been succesfully edited!");
 
                 return currentTasks;
             }
@@ -127,12 +140,19 @@ namespace ConsoleTODO.Controllers
                 Console.Write("Enter the ID of the task you want to remove: ");
                 idToRemove = Convert.ToInt32(Console.ReadLine());
 
+                if (currentTasks.Where(x => x.Id == idToRemove).Count() == 0) 
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid ID. Returning to main menu...");
+                    return currentTasks;
+                }
                 TaskModel selectedTask = currentTasks.Where(x => x.Id == idToRemove).First();
 
                 currentTasks.Remove(selectedTask);
                 currentTasks.SaveDataToFile(fileName);
 
-                Console.WriteLine("Task has been successfully removed.");
+                Console.Clear();
+                Console.WriteLine("Task has been successfully removed!");
 
                 return currentTasks;
             }
