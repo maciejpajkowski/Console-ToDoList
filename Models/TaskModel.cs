@@ -7,6 +7,6 @@ namespace ConsoleTODO.Models
         public int Id { get; set; }
         public string TaskName { get; set; }
         public string TaskDescription { get; set; }
-        public string TaskDueDate { get; set; } // zrobić z tego potem DateTime?
+        public string TaskDueDate { get; set; } // make it DateTime later perhaps?
     }    
 }
