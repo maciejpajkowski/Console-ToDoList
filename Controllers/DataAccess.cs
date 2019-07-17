@@ -12,7 +12,7 @@ namespace ConsoleTODO.Controllers
     {
         public static string FullFilePath(this string fileName)
         {
-            return $"H:\\jpmDesk\\Desktop\\CODE\\DOTNET\\ConsoleTODO\\Data\\{ fileName }";
+            return $"[your-path-here]\\{ fileName }";
         }
 
         public static List<string> LoadDataFromFile(this string file)
